@@ -1,0 +1,76 @@
+<?xml version="1.0"?> 
+<odoo>
+    <record id="estate_property_action" model="ir.actions.act_window" >
+        <field name="name">properties</field>
+        <field name="res_model">estate.property</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Create you first property
+            </p>
+            <p>
+                You can create a new property by clicking on the "Create" button.
+            </p>
+        </field> 
+    </record>
+
+    <record id="estate_property_view_tree" model="ir.ui.view">
+        <field name="name">estate.property.tree</field>
+        <field name="model">estate.property</field>
+        <field name="arch" type="xml">
+            <tree string="Properties">
+                <field name="name" string="nombre propiedad"/>
+                <field name="postcode"  string="codigo postal"/>
+                <field name="bedrooms" string="habitaciones"/>
+                <field name="living_area"/>
+                <field name="expected_price"/>
+                <field name="selling_price"/>
+                <field name="date_availability" string="Available From"/>
+                <field name="state" string="estado"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="estate_property_view_form" model="ir.ui.view">
+        <field name="name">estate.property.form</field>
+        <field name="model">estate.property</field>
+        <field name="arch" type="xml">
+            <form string="Properties">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" string="Title"/>
+                            <field name="description" string="Description"/>
+                            <field name="postcode"/>
+                            <field name="date_availability" string="Available From"/>
+                        </group>
+                        <group>
+                            <field name="bedrooms"/>
+                            <field name="living_area"/>
+                            <field name="expected_price"/>
+                            <field name="selling_price"/>
+                            <field name="garden_orientation"/>
+                            <field name="state" string="estado"/>
+                            <button name="action_create_invoice"
+                            type="object"
+                            string="Crear Factura"
+                            class="btn-primary"
+                            attrs="{'invisible': [('state', '!=', 'sold')]}"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="estate_property_view_search" model="ir.ui.view">
+        <field name="name">estate.property.search</field>
+        <field name="model">estate.property</field>
+        <field name="arch" type="xml">
+            <search string="Search Properties">
+                <field name="name" string="Title"/>
+                <field name="postcode"/>
+            </search>
+        </field>
+    </record>
+</odoo>
