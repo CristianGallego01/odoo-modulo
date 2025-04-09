@@ -33,11 +33,10 @@ class EstateProperty(models.Model):
     partner_id = fields.Many2one('res.partner', string='Cliente')
 
     def action_create_invoice(self):
-        """Crear factura para esta propiedad"""
         self.ensure_one()
-        if not self.partner_id:
-            raise UserError("Debe seleccionar un cliente para facturar.")
-
+        if self.state != 'sold':
+            raise UserError("La factura solo puede crearse cuando la propiedad está en estado 'sold'.")
+    
         invoice = self.env['account.move'].create({
             'move_type': 'out_invoice',
             'partner_id': self.partner_id.id,

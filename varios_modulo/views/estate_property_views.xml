@@ -51,12 +51,10 @@
                             <field name="selling_price"/>
                             <field name="garden_orientation"/>
                             <field name="state" string="estado"/>
-                            <t t-if="record.state.raw_value == 'sold'">
                                 <button name="action_create_invoice"
                                     type="object"
                                     string="Crear Factura"
                                     class="btn-primary"/>
-                            </t>
                         </group>
                     </group>
                 </sheet>
